@@ -13,6 +13,9 @@ const Table = (props) => {
     });
   return (
     <div>
+      <div className="ml-2 mt-2">
+        <Request />
+      </div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -47,14 +50,6 @@ const Table = (props) => {
                 <td className="px-6 py-4">{data.name}</td>
                 <td className="px-6 py-4">{data.author}</td>
                 <td className="px-6 py-4">{data.copies}</td>
-                <td className="px-6 py-4 text-right">
-                  <div className="inline-block">
-
-                    <Request setStudent={props.setStudent} isbn={data.isbn} setReqBook={props.setReqBook} SignIn={props.SignIn}/>
-                    {/* <ModalAp apid={data.apartmentid} />
-                    <ModalAm apid={data.apartmentid} /> */}
-                  </div>
-                </td>
               </tr>
             ))}
           </tbody>

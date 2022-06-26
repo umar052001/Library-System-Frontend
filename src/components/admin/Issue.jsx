@@ -1,7 +1,18 @@
+import axios from 'axios';
 import React from 'react'
-
+import { useState } from 'react';
+import { Approve } from './Approve';
 const Issue = (props) => {
-    const {student, reqBook} = props
+  const [issueData, setIssueData] = useState([])
+  
+  axios
+    .get("http://localhost:3004/issuedata")
+    .then(function (response) {
+      setIssueData(response.data);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
     return (
       <div>
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -15,12 +26,18 @@ const Issue = (props) => {
                   Name
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Requested book Isbn
+                  Isbn
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Requested Date
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Returning Date
                 </th>
               </tr>
             </thead>
             <tbody>
-              {student.map((data) => (
+              {issueData.map((data) => (
                 <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                   <th
                     scope="row"
@@ -29,14 +46,11 @@ const Issue = (props) => {
                     {data.id}
                   </th>
                   <td className="px-6 py-4">{data.name}</td>
-                  <td className="px-6 py-4">{reqBook}</td>
-                  <td className="px-6 py-4 text-right">
-                    <div className="inline-block">
-                      {/* <ModalAp apid={data.apartmentid} />
-                      <ModalAm apid={data.apartmentid} /> */}
-                    </div>
-                  </td>
-                </tr>
+                  <td className="px-6 py-4">{data.isbn}</td>
+                  <td className="px-6 py-4">{data.issuedate}</td>
+                  <td className="px-6 py-4">{data.returndate}</td>
+                  <Approve isbn={data.isbn} />
+                 </tr>
               ))}
             </tbody>
           </table>

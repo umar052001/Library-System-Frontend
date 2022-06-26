@@ -13,9 +13,8 @@ function App() {
     email: "",
     password: "",
   });
-  const [student, setStudent] = useState([])
-  const [reqBook, setReqBook] = useState("")
-  console.log(student)
+  const [student, setStudent] = useState([]);
+  console.log(student);
   const [isSignedIn, setIsSignedIn] = useState(false);
   return (
     <div>
@@ -23,8 +22,11 @@ function App() {
 
       <Routes>
         <Route path="/adminpanel" element={<Admin />} />
-        <Route path="/studentpanel" element={<Student setStudent={setStudent} setReqBook={setReqBook} SignIn={SignIn}/>} />
-        <Route path="/issuebooks" element={<Issue student={student} reqBook={reqBook}/>} />
+        <Route
+          path="/studentpanel"
+          element={<Student setStudent={setStudent} SignIn={SignIn} />}
+        />
+        <Route path="/issuebooks" element={<Issue />} />
         <Route
           path="/admin"
           element={
